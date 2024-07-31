@@ -1,46 +1,32 @@
-// src/pages/RegisterPage.js
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { auth, googleProvider } from '../firebaseConfig'; // Import Firebase config
-import { signInWithPopup } from 'firebase/auth';
-import './AuthPage.css';
+import { Link } from 'react-router-dom';
+import './AuthPage.css'; // Assuming you have shared CSS for auth pages
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+    // Password validation: at least one uppercase letter and at least 8 characters long
     const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(password)) {
       setError('Password must be at least 8 characters long and contain at least one uppercase letter.');
       return;
     }
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
+
     // Handle registration logic here
     console.log('Registering with', username, email, password);
     setError(''); // Clear any previous error messages
-  };
-
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-      console.log('User signed in with Google:', user);
-      navigate('/dashboard'); // Redirect after sign-in
-    } catch (error) {
-      console.error('Error signing in with Google', error);
-      setError(`Failed to sign in with Google: ${error.message}`);
-    }
   };
 
   return (
@@ -71,7 +57,7 @@ const RegisterPage = () => {
           </div>
           <div className="form-group mb-3 position-relative">
             <input
-              type={passwordVisible ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               className="form-control"
               placeholder="Password"
               value={password}
@@ -80,14 +66,14 @@ const RegisterPage = () => {
             />
             <span
               className="position-absolute eye-icon"
-              onClick={() => setPasswordVisible(!passwordVisible)}
+              onClick={() => setShowPassword(!showPassword)}
             >
-              <i className={`fa ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`} />
+              <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} />
             </span>
           </div>
           <div className="form-group mb-3 position-relative">
             <input
-              type={confirmPasswordVisible ? "text" : "password"}
+              type={showConfirmPassword ? 'text' : 'password'}
               className="form-control"
               placeholder="Confirm Password"
               value={confirmPassword}
@@ -96,16 +82,13 @@ const RegisterPage = () => {
             />
             <span
               className="position-absolute eye-icon"
-              onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
-              <i className={`fa ${confirmPasswordVisible ? 'fa-eye-slash' : 'fa-eye'}`} />
+              <i className={`fa ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`} />
             </span>
           </div>
           <button type="submit" className="btn btn-primary btn-block">Register</button>
         </form>
-        <button onClick={handleGoogleSignIn} className="btn btn-danger btn-block mt-3">
-          Sign Up with Google
-        </button>
         <p className="text-center mt-3">
           Already have an account? <Link to="/login">Login</Link>
         </p>
