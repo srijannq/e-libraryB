@@ -1,0 +1,56 @@
+.dashboard-page {
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    background: #f4f7fa;
+  }
+  
+  .dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .dashboard-section {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+  }
+  
+  .dashboard-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  
+  .dashboard-section .section-content {
+    margin-top: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .dashboard-content {
+      gap: 10px;
+    }
+  
+    .dashboard-section {
+      padding: 15px;
+    }
+  
+    .dashboard-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard-section {
+      padding: 10px;
+    }
+  
+    .dashboard-section h2 {
+      font-size: 1.25rem;
+    }
+  }
+  

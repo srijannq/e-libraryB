@@ -1,0 +1,145 @@
+/* src/pages/LandingPage.css */
+
+.landing-page {
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+    padding: 100px 0;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+}
+
+.hero-buttons .btn {
+    font-size: 1.25rem;
+    padding: 10px 30px;
+    margin: 0 10px;
+}
+
+.features-section {
+    padding: 60px 0;
+    background: #f4f7fa;
+}
+
+.features-section h2,
+.testimonials-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.features-section .row,
+.testimonials-section .row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.features-section .feature,
+.testimonials-section .testimonial {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    max-width: 300px;
+    flex: 1 1 300px;
+}
+
+.features-section .feature h3,
+.testimonials-section .testimonial p {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.features-section .feature:hover,
+.testimonials-section .testimonial:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.testimonials-section {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+.card {
+    border: none;
+}
+
+.testimonials-section .testimonial .heart {
+    color: #e53935; /* Red color for the heart symbol */
+    font-size: 1.2rem;
+}
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-buttons .btn {
+        font-size: 1rem;
+        padding: 8px 20px;
+        margin: 5px 0;
+    }
+    
+    .features-section h2,
+    .testimonials-section h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .features-section .feature,
+    .testimonials-section .testimonial {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.875rem;
+    }
+
+    .hero-buttons .btn {
+        font-size: 0.875rem;
+        padding: 6px 15px;
+    }
+
+    .features-section h2,
+    .testimonials-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .features-section .feature,
+    .testimonials-section .testimonial {
+        padding: 15px;
+    }
+}

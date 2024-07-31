@@ -1,0 +1,18 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  background-color: #EEE;
+}
+
+
+.home{
+  height: 50px;
+  background-color: rgb(153, 196, 169);
+}
+
+
+.home nav ul li{
+  display: inline-block;
+  margin-right: 10px;
+  
+}

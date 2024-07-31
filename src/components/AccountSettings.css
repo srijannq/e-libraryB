@@ -1,0 +1,81 @@
+/* src/components/AccountSettings.css */
+
+.account-settings {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-align: left;
+  }
+  
+  .setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .setting-item label {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .setting-item input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+  
+  .setting-item select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-link {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-link:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .account-settings {
+      padding: 20px;
+    }
+  
+    .section-title {
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+    }
+  
+    .setting-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .setting-item label {
+      margin-bottom: 5px;
+    }
+  
+    .btn-link {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
