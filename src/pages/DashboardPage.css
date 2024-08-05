@@ -1,7 +1,7 @@
 .dashboard-page {
     font-family: 'Roboto', sans-serif;
     padding: 20px;
-    background: #f4f7fa;
+    background: #eee;
   }
   
   .dashboard-content {
@@ -53,4 +53,3 @@
       font-size: 1.25rem;
     }
   }
-  

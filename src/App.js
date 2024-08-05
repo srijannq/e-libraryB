@@ -8,8 +8,7 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/HomePage';
-
-
+import DashboardPage from './pages/DashboardPage';
 
 
 const App = () => {
@@ -23,6 +22,7 @@ const App = () => {
           <Route path="/home" element={<HomePage />}></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/dashboard" element={<DashboardPage />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>  {/*This route should always be the last one to catch all unmatched routes. 404 Page.*/}
         </Routes>
       </BrowserRouter>

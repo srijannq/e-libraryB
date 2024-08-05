@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './UserProfile.css';
+import Dashboardpage from '../pages/DashboardPage';
 
 const UserProfile = () => {
   const [user, setUser] = useState({

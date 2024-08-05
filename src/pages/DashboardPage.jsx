@@ -7,33 +7,33 @@ import AccountSettings from '../components/AccountSettings';
 import './DashboardPage.css';
 
 const DashboardPage = () => {
-  const borrowedBooks = [
-    { id: 1, title: 'Borrowed Book 1', author: 'Author 1', dueDate: '2024-08-01' },
-    { id: 2, title: 'Borrowed Book 2', author: 'Author 2', dueDate: '2024-08-10' },
-    { id: 3, title: 'Borrowed Book 3', author: 'Author 3', dueDate: '2024-08-11' },
-    
-
-
-
-
-    // Add more borrowed books here
-  ];
-
-  const suggestedBooks = [
-    { id: 1, title: 'Suggested Book 1', author: 'Author 1' },
-    { id: 2, title: 'Suggested Book 2', author: 'Author 2' },
-    // Add more suggested books here
-  ];
-
-  const readingHistory = [
-    { id: 1, title: 'History Book 1', author: 'Author 1', finishedDate: '2024-07-01' },
-    { id: 2, title: 'History Book 2', author: 'Author 2', finishedDate: '2024-07-10' },
-    // Add more reading history here
-  ];
-
-  return (
-    <div className="dashboard-page">
-      <UserProfile />
+    const borrowedBooks = [
+      { id: 1, title: '400 Days', author: 'Chetan Bhagat', dueDate: '2024-08-01'},
+      { id: 2, title: 'The Girl in room no.105', author: 'Chetan Bhagat', dueDate: '2024-08-10' },
+      { id: 3, title: 'The Dhoni Touch', author: 'Bharat Sundaresan', dueDate: '2024-08-11' },
+      
+  
+  
+  
+  
+      // Add more borrowed books here
+    ];
+  
+    const suggestedBooks = [
+      { id: 1, title: 'Kalki', author: 'Kevin Missal' },
+      { id: 2, title: 'Unlocking The Universe', author: 'Lucy Hawking,Stephen Hawking' },
+      // Add more suggested books here
+    ];
+  
+    const readingHistory = [
+      { id: 1, title: 'One Arranged Murder', author: 'Chetan Bhagat', finishedDate: '2024-07-01' },
+      { id: 2, title: 'The Story Of Tata', author: 'Peter Casey', finishedDate: '2024-07-10' },
+      // Add more reading history here
+    ];
+  
+    return (
+      <div className="DashboardPage">
+        <UserProfile />
       <div className="dashboard-content">
         <section className="dashboard-section">
           <h2>Borrowed Books</h2>
@@ -53,7 +53,7 @@ const DashboardPage = () => {
         </section>
       </div>
     </div>
-  );
-};
-
-export default DashboardPage;
+    );
+  };
+  
+  export default DashboardPage;
