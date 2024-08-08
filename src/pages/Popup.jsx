@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
-import '../css/Popupd2.css';
+import './Popupd2.css';
+
 const da='/images/400bg.png';
 const gi='/images/girl.png';
 const ra='/images/ratantata.jpg';
@@ -8,6 +9,7 @@ const kal='/images/kalkibg.png';
 const bio='/images/dhoni.jpg';
 const uni='/images/universe.jpg';
 const m='/images/ml.jpg';
+
 const Popup=()=>{
     const[isHovered,setIsHovered]=useState(false);
     const[isHovered1,setIsHovered1]=useState(false);
@@ -17,9 +19,10 @@ const Popup=()=>{
     const[isHovered5,setIsHovered5]=useState(false);
     const[isHovered6,setIsHovered6]=useState(false);
     const[isHovered7,setIsHovered7]=useState(false);
-
+    
     return(
     <>
+        
         <h3 style={{color:'blue',textAlign:'center', fontFamily:'Poppins'}}><b>"Today a reader, tomorrow a leader." – Margaret Fuller.</b></h3><hr></hr>
               <div className="container-fluid">
                 <div className="row">
