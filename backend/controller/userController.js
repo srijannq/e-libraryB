@@ -38,7 +38,7 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   if (!email || !password) {
     return next(new ErrorHandler("Please Fill the full form", 400));
   }
-  const registerUser = await User.findOne({ email }).select("password");
+  const registerUser = await User.findOne({ email }).select("+password");
   if (!registerUser) {
     return next(new ErrorHandler("There is no such registered email", 400));
   }
@@ -48,12 +48,28 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   }
   const options = {
     httpOnly: true,
-    secure: true,
   };
   const token = registerUser.generateJSONToken();
   res.cookie("authToken", token, options);
   res.status(200).json({
     success: true,
     message: "User successfully logged in",
+    registerUser,
+  });
+});
+
+export const logout = asyncHandler(async (req, res, next) => {
+  res.clearCookie("authToken");
+  res.status(200).json({
+    success: true,
+    message: "User successfully logged out",
+  });
+});
+
+export const getUserDetails = asyncHandler(async (req, res, next) => {
+  const user = req.user;
+  res.status(200).json({
+    success: true,
+    user,
   });
 });

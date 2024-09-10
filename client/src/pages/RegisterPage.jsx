@@ -1,32 +1,49 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './AuthPage.css'; // Assuming you have shared CSS for auth pages
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./AuthPage.css"; // Assuming you have shared CSS for auth pages
+import axios from "axios";
+import { toast } from "react-toastify";
 const RegisterPage = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [error, setError] = useState('');
-
-  const handleRegister = (e) => {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
+      setError("Passwords do not match.");
       return;
     }
     // Password validation: at least one uppercase letter and at least 8 characters long
-    const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setError('Password must be at least 8 characters long and contain at least one uppercase letter.');
-      return;
+    // const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
+    // if (!passwordRegex.test(password)) {
+    //   setError(
+    //     "Password must be at least 8 characters long and contain at least one uppercase letter."
+    //   );
+    //   return;
+    // }
+    const userData = {
+      userName: username,
+      email,
+      password,
+      confirmPassword,
+    };
+    try {
+      const response = await axios.post("/api/v1/user/register", userData);
+      toast.success(response.data.message);
+      console.log(response);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
     }
 
     // Handle registration logic here
-    console.log('Registering with', username, email, password);
-    setError(''); // Clear any previous error messages
+    // Clear any previous error messages
   };
 
   return (
@@ -34,7 +51,11 @@ const RegisterPage = () => {
       <div className="auth-container card shadow-lg p-4">
         <h1 className="text-center mb-4">Register</h1>
         <form onSubmit={handleRegister}>
-          {error && <div className="alert alert-danger" role="alert">{error}</div>}
+          {error && (
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          )}
           <div className="form-group mb-3 position-relative">
             <input
               type="text"
@@ -57,7 +78,7 @@ const RegisterPage = () => {
           </div>
           <div className="form-group mb-3 position-relative">
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               className="form-control"
               placeholder="Password"
               value={password}
@@ -68,12 +89,12 @@ const RegisterPage = () => {
               className="position-absolute eye-icon"
               onClick={() => setShowPassword(!showPassword)}
             >
-              <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} />
+              <i className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`} />
             </span>
           </div>
           <div className="form-group mb-3 position-relative">
             <input
-              type={showConfirmPassword ? 'text' : 'password'}
+              type={showConfirmPassword ? "text" : "password"}
               className="form-control"
               placeholder="Confirm Password"
               value={confirmPassword}
@@ -84,10 +105,16 @@ const RegisterPage = () => {
               className="position-absolute eye-icon"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
-              <i className={`fa ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`} />
+              <i
+                className={`fa ${
+                  showConfirmPassword ? "fa-eye-slash" : "fa-eye"
+                }`}
+              />
             </span>
           </div>
-          <button type="submit" className="btn btn-primary btn-block">Register</button>
+          <button type="submit" className="btn btn-primary btn-block">
+            Register
+          </button>
         </form>
         <p className="text-center mt-3">
           Already have an account? <Link to="/login">Login</Link>
