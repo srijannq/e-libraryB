@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import './UserProfile.css';
-import Dashboardpage from '../pages/DashboardPage';
+import React, { useState } from "react";
+import "./UserProfile.css";
+import Dashboardpage from "../pages/DashboardPage";
 
 const UserProfile = () => {
   const [user, setUser] = useState({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    profilePicture: '../images/profile.jpg',
+    name: "John Doe",
+    email: "john.doe@example.com",
+    profilePicture: "",
   });
 
   const [newProfilePicture, setNewProfilePicture] = useState(null);
@@ -33,7 +33,7 @@ const UserProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Save user profile logic here
-    console.log('Profile updated:', user, newProfilePicture);
+    console.log("Profile updated:", user, newProfilePicture);
   };
 
   return (
@@ -77,7 +77,9 @@ const UserProfile = () => {
             className="form-control"
           />
         </div>
-        <button type="submit" className="btn btn-primary">Save Profile</button>
+        <button type="submit" className="btn btn-primary">
+          Save Profile
+        </button>
       </form>
     </div>
   );
