@@ -1,32 +1,43 @@
 // src/pages/LoginPage.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './AuthPage.css'; // Assuming you have shared CSS for auth pages
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Importing Font Awesome icons
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./AuthPage.css"; // Assuming you have shared CSS for auth pages
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importing Font Awesome icons
+import axios from "axios";
+import { toast } from "react-toastify";
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-
-  const handleLogin = (e) => {
+  const navigate = useNavigate();
+  const handleLogin = async (e) => {
     e.preventDefault();
     // Password validation: at least one uppercase letter and at least 8 characters long
-    const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setError('Password must be at least 8 characters long and contain at least one uppercase letter.');
-      return;
-    }
+    // const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
+    // if (!passwordRegex.test(password)) {
+    //   setError('Password must be at least 8 characters long and contain at least one uppercase letter.');
+    //   return;
+    // }
 
     // Handle login logic here
-    console.log('Logging in with', email, password);
-    setError(''); // Clear any previous error messages
+
+    const userLoginData = {
+      email,
+      password,
+    };
+    try {
+      const response = await axios.post("/api/v1/user/login", userLoginData);
+      toast.success(response.data.message);
+      navigate("/dashboard");
+    } catch (e) {
+      toast.error(e.response.data.message);
+    }
   };
 
   const handleGoogleLogin = () => {
     // Handle Google login logic here
-    console.log('Logging in with Google');
+    console.log("Logging in with Google");
   };
 
   return (
@@ -34,7 +45,11 @@ const LoginPage = () => {
       <div className="auth-container card shadow-lg p-4">
         <h1 className="text-center mb-4">Login</h1>
         <form onSubmit={handleLogin}>
-          {error && <div className="alert alert-danger" role="alert">{error}</div>}
+          {error && (
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          )}
           <div className="form-group mb-3 position-relative">
             <input
               type="email"
@@ -47,7 +62,7 @@ const LoginPage = () => {
           </div>
           <div className="form-group mb-3 position-relative">
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               className="form-control"
               placeholder="Password"
               value={password}
@@ -61,8 +76,14 @@ const LoginPage = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-          <button type="submit" className="btn btn-primary btn-block">Login</button>
-          <button type="button" className="btn btn-danger btn-block mt-3" onClick={handleGoogleLogin}>
+          <button type="submit" className="btn btn-primary btn-block">
+            Login
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger btn-block mt-3"
+            onClick={handleGoogleLogin}
+          >
             <i className="fab fa-google mr-2"></i>Login with Google
           </button>
         </form>
