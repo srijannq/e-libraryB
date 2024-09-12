@@ -32,7 +32,7 @@ const UserProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Save user profile logic here
+
     console.log("Profile updated:", user, newProfilePicture);
   };
 
