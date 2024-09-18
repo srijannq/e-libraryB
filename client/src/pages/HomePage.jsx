@@ -1,8 +1,4 @@
 // src/pages/HomePage.js
-
-
-
-
 import React from 'react';
 import WelcomeMessage from '../components/WelcomeMessage';
 import SearchBar from '../components/SearchBar';

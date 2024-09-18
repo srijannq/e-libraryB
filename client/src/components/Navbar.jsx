@@ -21,6 +21,7 @@ const Navbar = () => {
         <Link to="/login" onClick={() => setIsOpen(false)}>Login</Link>
         <Link to="/register" onClick={() => setIsOpen(false)}>Register</Link>
         <Link to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</Link>
+        <Link to="/Adregister" onClick={() => setIsOpen(false)}>Admin</Link>
       </div>
       <div className="navbar-toggle" onClick={toggleNavbar}>
         <i className={`fa ${isOpen ? 'fa-times' : 'fa-bars'}`} />
