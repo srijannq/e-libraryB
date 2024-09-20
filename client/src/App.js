@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
@@ -11,8 +10,8 @@ import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";
 import Categories from "./components/Categories";
 import Popup from "./pages/Popup";
-import Register2 from "./pages/Register2";
-import { ToastContainer} from "react-toastify";
+
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
@@ -27,7 +26,6 @@ const App = () => {
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/dashboard" element={<DashboardPage />}></Route>
-          <Route path="/Adregister" element={<Register2 />}></Route>
           <Route path="/" element={<Categories />} />
           <Route path="/category/:popup" element={<Popup />} />
           <Route path="*" element={<NotFoundPage />}></Route>{" "}

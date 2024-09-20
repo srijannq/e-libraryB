@@ -2,7 +2,7 @@ import { User } from "../models/userModel.js";
 
 import ErrorHandler from "../middlewares/ErrorHandler.js";
 import { asyncHandler } from "../middlewares/asyncHandler.js";
-
+import axios from "axios";
 export const registerUser = asyncHandler(async (req, res, next) => {
   const { userName, email, password, confirmPassword } = req.body;
 
@@ -32,6 +32,43 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     success: true,
     message: "User successfully registered",
   });
+});
+export const registerGoogle = asyncHandler(async (req, res, next) => {
+  const { token } = req.body;
+
+  try {
+    // Verify the token using Google's tokeninfo endpoint
+    const ticket = await axios.get(
+      `https://oauth2.googleapis.com/tokeninfo?id_token=${token.credential}`
+    );
+
+    // Extract user information from the token payload
+    const payload = ticket.data;
+    // const userId = payload.sub; // Google user ID
+
+    // Now you can register or log in the user using the payload data
+    const { email } = payload;
+    const isRegistered = await User.findOne({
+      email,
+    });
+    if (isRegistered) {
+      return next(
+        new ErrorHandler("☹️ The user already exists ! Please login")
+      );
+    }
+
+    // Save the user in your database
+    // For example:
+    // await db.saveUser(user);
+    await User.create({
+      email: payload.email,
+    });
+
+    res.status(200).json({ message: "User registered successfully", user });
+  } catch (error) {
+    console.error("Error verifying token:", error);
+    res.status(400).json({ message: "Invalid token" });
+  }
 });
 export const loginUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./AuthPage.css"; // Assuming you have shared CSS for auth pages
 import axios from "axios";
 import { toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -41,9 +42,20 @@ const RegisterPage = () => {
       console.log(error);
       toast.error(error.response.data.message);
     }
+  };
 
-    // Handle registration logic here
-    // Clear any previous error messages
+  // Handle registration logic here
+  // Clear any previous error messages
+  const handleGoogleSuccess = async (token) => {
+    try {
+      const response = await axios.post("/api/v1/user/register/google", {
+        token,
+      });
+      toast(response.data.message);
+      navigate("/login");
+    } catch (error) {
+      toast(error.response.data.message);
+    }
   };
 
   return (
@@ -115,6 +127,12 @@ const RegisterPage = () => {
           <button type="submit" className="btn btn-primary btn-block">
             Register
           </button>
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
         </form>
         <p className="text-center mt-3">
           Already have an account? <Link to="/login">Login</Link>
